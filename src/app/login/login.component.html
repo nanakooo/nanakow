@@ -1,0 +1,35 @@
+<div class="login-container">
+  <div class="login-form-container">
+    <form nz-form [formGroup]="user" (ngSubmit)="login()">
+      <nz-spin [nzSpinning]="isLoading">
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24">
+            <div class="custom-label">
+              <i class="custom-icon icon-zh"></i>
+              <span>账号</span>
+            </div>
+          </nz-form-label>
+          <nz-form-control [nzSpan]="24">
+            <input type="text" nz-input formControlName="username" placeholder="请输入账号">
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSpan]="24">
+            <div class="custom-label">
+              <i class="custom-icon icon-mm"></i>
+              <span>密码</span>
+            </div>
+          </nz-form-label>
+          <nz-form-control [nzSpan]="24">
+            <input type="text" nz-input formControlName="password" type="password" placeholder="请输入密码">
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-control>
+            <button nz-button class="login-form-button" nzType="primary">登 录</button>
+          </nz-form-control>
+        </nz-form-item>
+      </nz-spin>
+    </form>
+  </div>
+</div>

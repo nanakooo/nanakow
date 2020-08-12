@@ -1,0 +1,68 @@
+<div class="small-mi">
+  <div class="small-mi-nav">
+    <div></div>
+    <div>
+      <button nz-button nzType="primary" (click)="add()">新增</button>
+    </div>
+  </div>
+  <nz-table #basicTable nzBordered [nzData]="smallMi" [nzPageSize]="smallMiReq.size" [nzPageIndex]="smallMiReq.current"
+    nzSize="middle" [nzLoading]="nzLoading" [nzShowQuickJumper]="true" [nzShowPagination]="true"
+    (nzPageIndexChange)="getTableData($event)" [nzFrontPagination]="false" [nzTotal]="total">
+    <thead>
+      <tr>
+        <th>头像</th>
+        <th>微信号</th>
+        <th>昵称</th>
+        <th>使用中</th>
+        <th>二维码</th>
+        <th>好友数</th>
+        <th>详情</th>
+
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>
+          <nz-avatar nzIcon="user" nzSrc="{{data.avatar}}"></nz-avatar>
+        </td>
+        <td>{{ data.assistantAccount}}</td>
+        <td>{{ data.name}}</td>
+        <td>
+          <nz-switch [ngModel]="data.accountSwitch" (click)="clickSwitch()"></nz-switch>
+        </td>
+        <td>
+          <nz-avatar nzIcon="user" nzSrc="{{data.assistantCode}}"></nz-avatar>
+        </td>
+        <td>{{ data.friends }}</td>
+        <td><button nz-button nzType="link" (click)="details(data)">详情</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <nz-modal [(nzVisible)]="visible" [nzTitle]="title" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <form nz-form [formGroup]="smallFrom">
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>微信号</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="assistantAccount" placeholder="微信号" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>昵称</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="name" placeholder="昵称" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>好友数</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="friends" placeholder="好友数" />
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
+  </nz-modal>
+  <!-- <app-members-list-add [(nzVisible)]="visible" [membersData]="membersData" (change)="getmembersList()"></app-members-list-add> -->
+</div>

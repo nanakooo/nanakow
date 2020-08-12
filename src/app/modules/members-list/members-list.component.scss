@@ -1,0 +1,13 @@
+.members-list-container {
+  width: 100%;
+  padding: 20px;
+
+  .members-list-nav {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    .ant-btn {
+      margin-left: 10px;
+    }
+  }
+}

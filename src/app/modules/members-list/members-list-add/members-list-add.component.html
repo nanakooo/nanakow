@@ -1,0 +1,58 @@
+<div>
+  <nz-modal 
+    [(nzVisible)]="nzVisible"
+    nzTitle="新增会员"
+    (nzOnCancel)="handleCancel()"
+    (nzOnOk)="handleOk()">
+    <form nz-form [formGroup]="membersFrom">
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>avatar</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="avatar" placeholder="avatar" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>code</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="code" placeholder="code" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>createTime</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-date-picker formControlName="createTime" nzShowTime></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>expendMoney</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="expendMoney" placeholder="expendMoney" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>money</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="money" placeholder="money" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>realName</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="realName" placeholder="realName" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>tel</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="tel" placeholder="tel" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>username</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="username" placeholder="username" />
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-modal>
+</div>

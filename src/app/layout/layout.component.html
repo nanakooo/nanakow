@@ -1,0 +1,28 @@
+<div class="layout-container">
+  <nav>后台系统</nav>
+  <div class="layout-cont-container">
+    <ul nz-menu nzMode="inline" style="width: 240px;">
+      <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['/member-list']">会员列表管理</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['/member-type']">会员类型管理</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['/activation-code']">激活码管理</a>
+      </li>
+      <!-- <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['/scoket']">socket设备管理</a>
+      </li> -->
+      <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['/resource-service']">资源服务管理</a>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a [routerLink]="['/small-mi']">微小秘管理</a>
+      </li>
+    </ul>
+    <div class="main">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

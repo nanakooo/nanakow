@@ -1,0 +1,91 @@
+<div class="members-type-container">
+  <!-- <div class="members-type-nav">
+    <button nz-button nzType="primary" (click)="add()">新增</button>
+  </div> -->
+  <nz-table #basicTable nzBordered [nzData]="membersTypeList" [nzPageSize]="membersTypeReq.size"
+    [nzPageIndex]="membersTypeReq.current" nzSize="middle" [nzLoading]="nzLoading" [nzShowQuickJumper]="true"
+    [nzShowPagination]="true" (nzPageIndexChange)="getTableData($event)" [nzFrontPagination]="false" [nzTotal]="total">
+    <thead>
+      <tr>
+        <th>会员名称</th>
+        <th>创建主账号个数</th>
+        <th>创建从账号个数</th>
+        <th>创建时间</th>
+        <th>1级推广收益</th>
+        <th>每日同步条数</th>
+        <th>3级推广收益</th>
+        <th>2级推广收益</th>
+        <th>可用视图模板</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.createAccountNumber }}</td>
+        <td>{{ data.createSyncAccountNumber}}</td>
+        <td>{{ data.createTime  | date : 'yyyy-MM-dd hh:mm:ss' }}</td>
+        <td>{{ data.oneProfit }}</td>
+        <td>{{ data.syncNumber }}</td>
+        <td>{{ data.threeProfit }}</td>
+        <td>{{ data.twoProfit }}</td>
+        <td>{{ data.useViewTemp }}</td>
+        <td>
+          <button nz-button nzType="link" (click)="editMembersType(data)">修改</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <nz-modal [(nzVisible)]="visible" [nzTitle]="title" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <form nz-form [formGroup]="membersTepyFrom">
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>会员名称</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="name" placeholder="会员名称" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>创建账号个数</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-input-number formControlName="createAccountNumber" placeholder="创建账号个数" [nzMin]="0" [nzStep]="1" style="width: 100%;"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>创建时间</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-date-picker formControlName="createTime" nzShowTime></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>1级推广收益</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-input-number formControlName="oneProfit" placeholder="1级推广收益" style="width: 100%;"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>每日同步条数</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-input-number formControlName="syncNumber" placeholder="每日同步条数" [nzMin]="0" [nzStep]="1" style="width: 100%;"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>3级推广收益</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-input-number formControlName="threeProfit" placeholder="3级推广收益" style="width: 100%;"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>2级推广收益</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-input-number formControlName="twoProfit" placeholder="2级推广收益" style="width: 100%;"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>可用视图模板</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-input-number formControlName="useViewTemp" placeholder="可用视图模板" [nzMin]="0" [nzStep]="1" style="width: 100%;"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-modal>
+</div>

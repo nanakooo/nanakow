@@ -1,0 +1,21 @@
+.layout-container {
+  nav {
+    height: 60px;
+    border-bottom: 1px solid #e8e8e8;
+    text-align: center;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+  .layout-cont-container {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    .ant-menu-inline {
+      height: 100%;
+    }
+  }
+  .main {
+    width: calc(100% - 240px);
+  }
+}

@@ -1,0 +1,72 @@
+<div class="activation-code-container">
+  <div class="activation-code-nav">
+    <div></div>
+    <div>
+      <button nz-button nzType="primary" (click)="add()">新增</button>
+      <!-- <button nz-button nzType="primary" (click)="export()">导出</button> -->
+    </div>
+  </div>
+  <nz-table #basicTable nzBordered [nzData]="activationCodeList" [nzPageSize]="activationCodeReq.size"
+    [nzPageIndex]="activationCodeReq.current" nzSize="middle" [nzLoading]="nzLoading" [nzShowQuickJumper]="true"
+    [nzShowPagination]="true" (nzPageIndexChange)="getTableData($event)" [nzFrontPagination]="false"
+    [nzTotal]="activationCodeReq.total">
+    <thead>
+      <tr>
+        <th>创建人</th>
+        <th>创建时间</th>
+        <th>生成条数</th>
+        <th>操作</th>
+        <!-- <th>操作</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.createBy }}</td>
+        <td>{{ data.createTime | date : 'yyyy-MM-dd hh:mm:ss'}}</td>
+        <td>{{ data.num }}</td>
+        <td>
+          <button nz-button nzType="link" (click)="export(data)">导出</button>
+          <button nz-button nzType="link" (click)="export(data)">详情</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <nz-modal [(nzVisible)]="visible" [nzTitle]="title" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <form nz-form [formGroup]="activationCodeFrom">
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>创建人</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-input-number formControlName="count" placeholder="创建人" [nzMin]="0" [nzStep]="1" style="width: 100%;">
+          </nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>生产条数</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-input-number formControlName="length" placeholder="生产条数" [nzMin]="0" [nzStep]="1" style="width: 100%;">
+          </nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>vid</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-select formControlName="vid">
+            <template *ngFor="let memberData of membersTypeList">
+              <nz-option nzValue="{{memberData.id}}" nzLabel="{{memberData.name}}"></nz-option>
+            </template>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>授权类型</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-select formControlName="memberType">
+            <nz-option nzValue="5" nzLabel="永久"></nz-option>
+            <nz-option nzValue="3" nzLabel="年卡"></nz-option>
+            <nz-option nzValue="1" nzLabel="月卡"></nz-option>
+          </nz-select>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-modal>
+</div>

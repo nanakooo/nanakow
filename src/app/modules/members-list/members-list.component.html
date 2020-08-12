@@ -1,0 +1,96 @@
+<div class="members-list-container">
+  <div class="members-list-nav">
+    <div></div>
+    <div>
+      <button nz-button nzType="primary" (click)="add()">新增</button>
+    </div>
+  </div>
+  <nz-table #basicTable nzBordered [nzData]="membersList" [nzPageSize]="membersListReq.size"
+    [nzPageIndex]="membersListReq.current" nzSize="middle" [nzLoading]="nzLoading" [nzShowQuickJumper]="true"
+    [nzShowPagination]="true" (nzPageIndexChange)="getTableData($event)" [nzFrontPagination]="false" [nzTotal]="total">
+    <thead>
+      <tr>
+        <th>头像</th>
+        <th>邀请码</th>
+        <th>注册时间</th>
+        <th>可提现金额</th>
+        <th>总金额</th>
+        <th>昵称</th>
+        <th>电话</th>
+        <th>登录账号</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>
+          <nz-avatar nzIcon="user" nzSrc="{{data.avatar}}"></nz-avatar>
+        </td>
+        <td>{{ data.code }}</td>
+        <td>{{ data.createTime  | date : 'yyyy-MM-dd hh:mm:ss' }}</td>
+        <td>{{ data.expendMoney }}</td>
+        <td>{{ data.money }}</td>
+        <td>{{ data.realName }}</td>
+        <td>{{ data.tel }}</td>
+        <td>{{ data.username }}</td>
+        <td>
+          <!-- <button nz-button nzType="link" (click)="editMember(data)">修改</button> -->
+          <button nz-button nzType="link" (click)="delMember(data)">删除</button>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <nz-modal [(nzVisible)]="visible" [nzTitle]="title" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <form nz-form [formGroup]="membersFrom">
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>头像</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-avatar nzIcon="user" nzSrc="avatar"></nz-avatar>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>邀请码</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="code" placeholder="code" />
+        </nz-form-control>·
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>注册时间</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-date-picker formControlName="createTime" nzShowTime></nz-date-picker>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>可提现金额</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-input-number formControlName="expendMoney" placeholder="expendMoney" style="width: 100%;"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>总金额</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <nz-input-number formControlName="money" placeholder="money" style="width: 100%;"></nz-input-number>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>昵称</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="realName" placeholder="realName" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>电话</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="tel" placeholder="tel" />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item>
+        <nz-form-label [nzSm]="8" [nzXs]="24" nzRequired>登录账号</nz-form-label>
+        <nz-form-control [nzSm]="16" [nzXs]="24">
+          <input nz-input formControlName="username" placeholder="username" />
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </nz-modal>
+  <!-- <app-members-list-add [(nzVisible)]="visible" [membersData]="membersData" (change)="getmembersList()"></app-members-list-add> -->
+</div>
